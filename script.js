@@ -279,13 +279,10 @@ function readEmperors(data) {
       name: el.name,
       birth: b,
       death: d,
-      //life_length: d - b,
       ascension: asc,
       abdication: abd,
-      //reign_length: (asc === false || abd === false)? false : abd - asc,
       c_ascension: c_asc,
-      c_abdication: c_abd,
-      //c_length: (c_asc === false || c_abd === false)? false : c_abd - c_asc
+      c_abdication: c_abd
     });
 
     log(emperors[emperors.length - 1]);
@@ -334,7 +331,6 @@ function getYearPosition(date) {
 }
 
 function handleSingleYear(date) {
-  //date = date + "/";
   if (date.indexOf('/') === -1) {
     var year = date;
     if (year[0] === "#") year = year.substring(1,date.length);
