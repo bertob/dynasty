@@ -26,22 +26,28 @@ var BAR_LABEL_SIZE = 12;
 var DYN_HEIGHT = 40;
 var DYN_BAR_HEIGHT = 3;
 
-// COLORS
+// STYLES
 
 var COLOR_LIFE = "#39b1d5";
 var COLOR_AUG = "#8d065e";
 var COLOR_CAE = "#de49a8";
+var COLORS = [COLOR_LIFE, COLOR_AUG, COLOR_CAE];
 
 var GRID_1 = "#666";
 var GRID_2 = "#aaa";
 var GRID_3 = "#ccc";
 var GRID_4 = "#eee";
 
+var FONT = "'Fira Sans', Helvetica, sans-serif";
+
+var gradients = [];
+
 // INIT
 
 var svg = d3.select("svg");
 
 d3.csv("data/rom_emp.csv", type, function(error, data) {
+  setGradients();
   readEmperors(data);
   d3.csv("data/rom_dyn.csv", type, function(error, data) {
     dynasties = data;
@@ -81,6 +87,52 @@ function init() {
   drawEmperors(emperors);
 }
 
+function setGradients() {
+
+  // define gradients globally
+  var defs = svg.append("svg:defs");
+
+  // life
+  gradients[0] = defs.append("svg:linearGradient")
+    .attr("id", "l_gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%")
+    .attr("spreadMethod", "pad");
+
+  // augustus
+  gradients[1] = defs.append("svg:linearGradient")
+    .attr("id", "a_gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%")
+    .attr("spreadMethod", "pad");
+
+  // caesar
+  gradients[2] = defs.append("svg:linearGradient")
+    .attr("id", "c_gradient")
+    .attr("x1", "0%")
+    .attr("y1", "0%")
+    .attr("x2", "100%")
+    .attr("y2", "0%")
+    .attr("spreadMethod", "pad");
+
+  // add stops to the gradients
+  gradients.forEach(function(grad, i) {
+    grad.append("svg:stop")
+    .attr("offset", "0%")
+    .attr("stop-color", COLORS[i])
+    .attr("stop-opacity", 0);
+
+    grad.append("svg:stop")
+    .attr("offset", "100%")
+    .attr("stop-color", COLORS[i])
+    .attr("stop-opacity", 1);
+  });
+}
+
 // DRAWING FUNCTIONS
 
 function drawGrid(data, start, end) {
@@ -102,13 +154,13 @@ function drawEmperors(data) {
   data.forEach(function(el, i) {
     log("drawing " + el.name);
     drawName(el, i);
-    handleRanges(el, i, el.birth, el.death, COLOR_LIFE);
-    if ((el.ascension && el.abdictation) !== false) handleRanges(el, i, el.ascension, el.abdication, COLOR_AUG);
-    if ((el.c_ascension && el.c_abdictation) !== false) handleRanges(el, i, el.c_ascension, el.c_abdication, COLOR_CAE);
+    handleRanges("l", el, i, el.birth, el.death, COLOR_LIFE);
+    if ((el.ascension && el.abdictation) !== false) handleRanges("a", el, i, el.ascension, el.abdication, COLOR_AUG);
+    if ((el.c_ascension && el.c_abdictation) !== false) handleRanges("c", el, i, el.c_ascension, el.c_abdication, COLOR_CAE);
   });
 }
 
-function handleRanges(el, i, start, end, color) {
+function handleRanges(type, el, i, start, end, color) {
   var VERT_OFFSET = VERT_MARGIN + SCALE_HEIGHT + BAR_VERT_MARGIN;
   var y = VERT_OFFSET + i * BAR_ROW_H;
   var x, w;
@@ -119,36 +171,36 @@ function handleRanges(el, i, start, end, color) {
 
   // range bar at the beginning of the bar
   if(start.length !== 1) {
-    drawRangeBar(start, y, color);
+    drawRangeBar(start, y, false, "url(#" + type + "_gradient)", 1);
     bar_start = start[1];
   }
 
   // range bar at the end of the bar
   if (end.length !== 1) {
-    drawRangeBar(end, y, color);
+    drawRangeBar(end, y, true, "url(#" + type + "_gradient)", 1);
     bar_end = end[0];
   }
 
   // draw actual bar
   x = HORIZ_MARGIN + (year_0_offset + bar_start) * YEAR;
   w = (bar_end - bar_start) * YEAR;
-  drawBar(x, y, w, color, 1);
+  drawBar(x, y, w, false, color);
 }
 
-function drawRangeBar(range, y, color) {
+function drawRangeBar(range, y, mirror, color) {
   x = HORIZ_MARGIN + (year_0_offset + range[0]) * YEAR;
   w = (range[1] - range[0]) * YEAR;
-  drawBar(x, y, w, color, 0.5);
+  drawBar(x, y, w, mirror, color);
 }
 
-function drawBar(x, y, w, color, opacity) {
+function drawBar(x, y, w, mirror, color) {
   svg.append("rect")
     .attr("x", x)
     .attr("y", y)
     .attr("width", w)
     .attr("height", BAR_HEIGHT)
-    .attr("opacity", opacity)
-    .attr("fill", color);
+    .style("fill", color)
+    .attr("transform", mirror? "translate(" + (2 * x + w) + ", 0) scale(-1,1)" : "");
 }
 
 function drawName(emp, i) {
@@ -157,7 +209,7 @@ function drawName(emp, i) {
     .attr("x", HORIZ_MARGIN + (year_0_offset + emp.birth[0]) * YEAR - BAR_LABEL_MARGIN)
     .attr("y", VERT_MARGIN + SCALE_HEIGHT + BAR_VERT_MARGIN + i * BAR_ROW_H + BAR_HEIGHT)
     .attr("text-anchor", "end")
-    .attr("font-family", "sans-serif")
+    .attr("font-family", FONT)
     .attr("font-weight", 500)
     .attr("font-size", BAR_LABEL_SIZE)
     .attr("fill", "black");
@@ -208,7 +260,7 @@ function drawDynasties(dynasties, emperors) {
       .attr("x", x)
       .attr("y", y_label)
       .attr("text-anchor", "start")
-      .attr("font-family", "sans-serif")
+      .attr("font-family", FONT)
       .attr("font-weight", 500)
       .attr("font-size", "18px")
       .attr("fill", dyn.color);
@@ -239,7 +291,7 @@ function drawGridLabel(year, color) {
     .attr("x", x)
     .attr("y", y)
     .attr("text-anchor", "middle")
-    .attr("font-family", "sans-serif")
+    .attr("font-family", FONT)
     .attr("font-weight", 600)
     .attr("font-size", 12)
     .attr("fill", color);
