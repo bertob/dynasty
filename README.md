@@ -8,6 +8,16 @@ Originally built for this visualization of the reigns of the roman emperors.
 
 ![Roman emperors](examples/rome.png)
 
+##Usage
+
+Clone this repository and open index.html in your browser to try it locally.
+
+To create your own visualizations, prepare 2 CSV files following the format outlined below, and change the variables **emperor_file** and **dynasty_file** in the beginning of script.js.
+
+You'll also want to set the other config variables, such as **title**, **data source** and **credit**.
+
+If you want the visualization as a self-contained SVG, you'll have to copy the SVG tag from your browser's Developer Tools and put the copied text in a file with an .svg file extension. I might make this more convenient in the future, but for now this is the only way.
+
 ##CSV files
 
 The visualzation is generated from 2 CSV files, a list of all emperors, and a list of all dynasties. The paths to these files can be configured in the first few lines of script.js by changing the variables **emperor_file** and **dynasty_file**.

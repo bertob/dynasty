@@ -2,6 +2,7 @@
 
 var emperor_file = "data/rom_emp.csv";
 var dynasty_file = "data/rom_dyn.csv";
+
 var TITLE = "The lives and reigns of Roman Emperors";
 var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
