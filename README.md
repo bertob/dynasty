@@ -6,7 +6,7 @@ Renders dynasty timelines with life, reign and, (if applicable) reign as co-mona
 
 Originally built for this visualization of the reigns of the roman emperors.
 
-![Roman emperors](examples/rome.svg)
+![Roman emperors](examples/rome.png)
 
 ##CSV files
 
