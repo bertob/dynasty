@@ -10,9 +10,9 @@ Originally built for this visualization of the reigns of the roman emperors.
 
 ##CSV files
 
-The visualzation is generated from 2 CSV files.
+The visualzation is generated from 2 CSV files, a list of all emperors, and a list of all dynasties. The paths to these files can be configured in the first few lines of script.js by changing the variables **emperor_file** and **dynasty_file**.
 
-###emperors.csv
+###emperor_file
 
 name | birth | death | ascension | abdication | ascension (co-emperor) | ascension (co-emperor)
 -----|-------|-------|-----------|------------|------------------------|-----------------------
@@ -30,7 +30,7 @@ parameter | meaning
 **d** | abdication date same as death date (died in office)
 **a** | co-emperor abdication date same as ascension date to emperor
 
-###dynasties.csv
+###dynasty_file
 
 name of the dynasty | first emperor's name | last emperor's name | display color
 --------------------|----------------------|---------------------|--------------

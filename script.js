@@ -1,3 +1,11 @@
+// CONFIG
+
+var emperor_file = "data/rom_emp.csv";
+var dynasty_file = "data/rom_dyn.csv";
+var TITLE = "The lives and reigns of Roman Emperors";
+var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
+var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
+
 // VARIABLES
 
 var width, height;
@@ -13,7 +21,8 @@ var dynasties = [];
 var VERT_MARGIN = 20;
 var HORIZ_MARGIN = VERT_MARGIN;
 
-var SCALE_HEIGHT = 70;
+var SCALE_HEIGHT = 180;
+var BOTTOM_MARGIN = 60;
 
 var YEAR = 4;
 
@@ -46,10 +55,10 @@ var gradients = [];
 
 var svg = d3.select("svg");
 
-d3.csv("data/rom_emp.csv", type, function(error, data) {
+d3.csv(emperor_file, type, function(error, data) {
   setGradients();
   readEmperors(data);
-  d3.csv("data/rom_dyn.csv", type, function(error, data) {
+  d3.csv(dynasty_file, type, function(error, data) {
     dynasties = data;
     init();
   });
@@ -76,12 +85,13 @@ function init() {
 
   // format SVG document
   width = Math.abs(endCentury(max) - startCentury(min)) * 100 * YEAR + 2 * HORIZ_MARGIN;
-  height = SCALE_HEIGHT + BAR_VERT_MARGIN + emperors.length * (BAR_HEIGHT + BAR_VERT_MARGIN) + 2 * VERT_MARGIN;
+  height = SCALE_HEIGHT + BOTTOM_MARGIN + BAR_VERT_MARGIN + emperors.length * (BAR_HEIGHT + BAR_VERT_MARGIN) + 2 * VERT_MARGIN;
 
   svg.attr("width", width)
   .attr("height", height);
 
   // draw data
+  drawInfo();
   drawGrid(emperors, startCentury(min) * 100, endCentury(max) * 100);
   drawDynasties(dynasties, emperors);
   drawEmperors(emperors);
@@ -122,18 +132,65 @@ function setGradients() {
   // add stops to the gradients
   gradients.forEach(function(grad, i) {
     grad.append("svg:stop")
-    .attr("offset", "0%")
-    .attr("stop-color", COLORS[i])
-    .attr("stop-opacity", 0);
+      .attr("offset", "0%")
+      .attr("stop-color", COLORS[i])
+      .attr("stop-opacity", 0);
 
     grad.append("svg:stop")
-    .attr("offset", "100%")
-    .attr("stop-color", COLORS[i])
-    .attr("stop-opacity", 1);
+      .attr("offset", "100%")
+      .attr("stop-color", COLORS[i])
+      .attr("stop-opacity", 1);
   });
 }
 
 // DRAWING FUNCTIONS
+
+function drawInfo() {
+
+  // draw title
+  svg.append("text")
+    .text(TITLE)
+    .attr("x", HORIZ_MARGIN)
+    .attr("y", VERT_MARGIN + SCALE_HEIGHT - 140)
+    .attr("text-anchor", "start")
+    .attr("font-family", FONT)
+    .attr("font-weight", 500)
+    .attr("font-size", 40)
+    .attr("fill", "black");
+
+  // draw years
+  svg.append("text")
+    .text(getYearRange(min, max))
+    .attr("x", HORIZ_MARGIN)
+    .attr("y", VERT_MARGIN + SCALE_HEIGHT - 100)
+    .attr("text-anchor", "start")
+    .attr("font-family", FONT)
+    .attr("font-weight", 500)
+    .attr("font-size", 30)
+    .attr("fill", "black");
+
+    // draw source & credit
+    svg.append("text")
+      .text(SOURCE)
+      .attr("x", HORIZ_MARGIN)
+      .attr("y", height - BOTTOM_MARGIN - VERT_MARGIN + 30)
+      .attr("text-anchor", "start")
+      .attr("font-family", FONT)
+      .attr("font-weight", 500)
+      .attr("font-size", BAR_LABEL_SIZE)
+      .attr("fill", "black");
+    svg.append("text")
+      .text(CREDIT)
+      .attr("x", HORIZ_MARGIN)
+      .attr("y", height - BOTTOM_MARGIN - VERT_MARGIN + 50)
+      .attr("text-anchor", "start")
+      .attr("font-family", FONT)
+      .attr("font-weight", 500)
+      .attr("font-size", BAR_LABEL_SIZE)
+      .attr("fill", "black");
+
+
+}
 
 function drawGrid(data, start, end) {
   // -200, 700
@@ -250,7 +307,7 @@ function drawDynasties(dynasties, emperors) {
       .attr("x", x)
       .attr("y", y)
       .attr("width", w)
-      .attr("height", height - 2 * VERT_MARGIN - SCALE_HEIGHT + 40)
+      .attr("height", height - BOTTOM_MARGIN - 2 * VERT_MARGIN - SCALE_HEIGHT + 40)
       .attr("opacity", 0.06)
       .attr("fill", dyn.color);
 
@@ -270,7 +327,7 @@ function drawDynasties(dynasties, emperors) {
 
 function drawLineAtYear(year, color) {
   var x = HORIZ_MARGIN + year_0_offset * YEAR + year * YEAR;
-  var lineData = [{"x": x, "y": HORIZ_MARGIN + SCALE_HEIGHT}, {"x": x, "y": height - VERT_MARGIN}];
+  var lineData = [{"x": x, "y": HORIZ_MARGIN + SCALE_HEIGHT}, {"x": x, "y": height - BOTTOM_MARGIN - VERT_MARGIN}];
   var lineFunction = d3.svg.line()
   .x(function(d) { return d.x; })
   .y(function(d) { return d.y; })
@@ -396,6 +453,20 @@ function startCentury(year) {
 
 function endCentury(year) {
   return Math.floor(year / 100) + 1;
+}
+
+function getYearRange(start, end) {
+  if (start < 0 || end < 0) {
+    return getYearString(startCentury(min) * 100) + " – " + getYearString(endCentury(max) * 100);
+  }
+  else {
+    return startCentury(min) * 100 + " – " + endCentury(max) * 100;
+  }
+}
+
+function getYearString(year) {
+  if (year < 0) return Math.abs(year) + " BC";
+  else return year + " AD";
 }
 
 function type(d) {
