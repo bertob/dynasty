@@ -1,6 +1,14 @@
 name,birth,death,ascension,abdication,c_ascension,c_abdication,
+Gaius Marius,#-157,13/1/-86,n,n,n,n
+Sulla,#-138,#-78,n,n,n,n
+Cicero,3/1/-106,7/12/-43,n,n,n,n
+Julius Caesar,13/7/-100,15/3/-44,n,n,n,n
+Cleopatra,1/11/-69,12/8/-30,n,n,n,n
+Mark Antony,#-86_-82,1/8/-30,n,n,n,n
 Augustus,23/9/-63,19/8/14,16/1/-27,d,n,n
+Agrippa,#-64_-63,#-12,n,n,n,n
 Tiberius,16/11/-42,16/3/37,18/9/14,d,n,n
+Drusus,14/1/-38,1/6/-9,n,n,n,n
 Caligula,12/08/12,24/1/41,18/3/37,d,n,n
 Claudius,10/08/-10,13/8/54,25/1/41,d,n,n
 Nero,15/12/37,9/6/68,13/10/54,d,n,n
