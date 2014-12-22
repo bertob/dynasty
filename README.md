@@ -14,7 +14,7 @@ Clone this repository and open index.html in your browser to try it locally.
 
 To create your own visualizations, prepare 2 CSV files following the format outlined below, and change the variables **emperor_file** and **dynasty_file** in the beginning of script.js.
 
-You'll also want to set the other config variables, such as **title**, **data source** and **credit**.
+You'll also want to set the other config variables, **TITLE**, **DATA_SOURCE** and **CREDIT**. If you want, you can also disable these things with the **SHOW_INFO** flag, such that only the actual visualization is rendered. If you want to disable the dynasty labels and bars as well, you can do it by setting the **SHOW_DYNASTIES** flag.
 
 If you want the visualization as a self-contained SVG, you'll have to copy the SVG tag from your browser's Developer Tools and put the copied text in a file with an .svg file extension. I might make this more convenient in the future, but for now this is the only way.
 
@@ -24,7 +24,7 @@ The visualzation is generated from 2 CSV files, a list of all emperors, and a li
 
 ###emperor_file
 
-name | birth | death | ascension | abdication | ascension (co-emperor) | ascension (co-emperor)
+name | birth | death | ascension | abdication | ascension (co-emperor) | abdication (co-emperor)
 -----|-------|-------|-----------|------------|------------------------|-----------------------
 string | date | date | date or **"n"** | date or **"d"** or **"n"** | date or **"n"** | date or **"a"** or **"d"** or **"n"**
 `Augustus` | `23/9/-63` | `19/8/14` | `16/1/-27` | `d` | `n` | `n`
@@ -44,7 +44,7 @@ parameter | meaning
 
 name of the dynasty | first emperor's name | last emperor's name | display color
 --------------------|----------------------|---------------------|--------------
-string | string | strng | hex color
+string | string | string | hex color
 `Julio-Claudians` | `Augustus` | `Nero` | `#c00465`
 `Flavians` | `Vespasian` | `Domitian` | `#47c00a`
 `Antonines` | `Nerva` | `Commodus` | `#bc0b0b`
