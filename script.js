@@ -7,6 +7,9 @@ var TITLE = "The lives and reigns of Roman Emperors";
 var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
 
+var SHOW_INFO = true;
+var SHOW_DYNASTIES = true;
+
 // VARIABLES
 
 var width, height;
@@ -22,8 +25,17 @@ var dynasties = [];
 var VERT_MARGIN = 20;
 var HORIZ_MARGIN = VERT_MARGIN;
 
-var SCALE_HEIGHT = 180;
-var BOTTOM_MARGIN = 60;
+var SCALE_HEIGHT = 0;
+var BOTTOM_MARGIN = 0;
+
+if (SHOW_DYNASTIES && SHOW_INFO) {
+  var SCALE_HEIGHT = 180;
+  var BOTTOM_MARGIN = 60;
+}
+else if (SHOW_INFO) {
+  var SCALE_HEIGHT = 70;
+  var BOTTOM_MARGIN = 60;
+}
 
 var YEAR = 4;
 
@@ -88,13 +100,20 @@ function init() {
   width = Math.abs(endCentury(max) - startCentury(min)) * 100 * YEAR + 2 * HORIZ_MARGIN;
   height = SCALE_HEIGHT + BOTTOM_MARGIN + BAR_VERT_MARGIN + emperors.length * (BAR_HEIGHT + BAR_VERT_MARGIN) + 2 * VERT_MARGIN;
 
+  // set document size
   svg.attr("width", width)
-  .attr("height", height);
+    .attr("height", height);
+
+  // set white background
+  svg.append("rect")
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("fill", "white");
 
   // draw data
-  drawInfo();
+  if (SHOW_INFO) drawInfo();
   drawGrid(emperors, startCentury(min) * 100, endCentury(max) * 100);
-  drawDynasties(dynasties, emperors);
+  if (SHOW_DYNASTIES) drawDynasties(dynasties, emperors);
   drawEmperors(emperors);
 }
 
@@ -416,13 +435,10 @@ function getYearPosition(date) {
   if(date[0] === '#') {
     if(date.indexOf('_') !== -1) {
       var parts = date.substring(1,date.length).split('_');
-
       for (var i = 0; i < 2; i++){
         if (parts[i].indexOf('/') !== -1) dates.push(handleSingleYear(parts[i])[i]);
         else dates.push(handleSingleYear(parts[i])[i]);
       }
-
-      //dates = [handleSingleYear(parts[0]), handleSingleYear(parts[1])];
     } else dates = handleSingleYear(date);
   } else dates = [date];
 
