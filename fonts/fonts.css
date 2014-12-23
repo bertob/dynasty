@@ -1,0 +1,51 @@
+/* Karla */
+
+@font-face {
+    font-family: 'Karla';
+    src: url('karla-bold-webfont.eot');
+    src: url('karla-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('karla-bold-webfont.woff2') format('woff2'),
+         url('karla-bold-webfont.woff') format('woff'),
+         url('karla-bold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
+/* PT Serif */
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('PTF55F-webfont.eot');
+  src: url('PTF55F-webfont.eot?#iefix') format('embedded-opentype'),
+  url('PTF55F-webfont.woff') format('woff'),
+  url('PTF55F-webfont.ttf') format('truetype'),
+  url('PTF55F-webfont.svg#pt_serifregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'PT Serif';
+  src: url('PTF56F-webfont.eot');
+  src: url('PTF56F-webfont.eot?#iefix') format('embedded-opentype'),
+  url('PTF56F-webfont.woff') format('woff'),
+  url('PTF56F-webfont.ttf') format('truetype'),
+  url('PTF56F-webfont.svg#pt_serifitalic') format('svg');
+  font-weight: normal;
+  font-style: italic;
+
+}
+
+@font-face {
+  font-family: 'pt_serifbold';
+  src: url('PTF75F-webfont.eot');
+  src: url('PTF75F-webfont.eot?#iefix') format('embedded-opentype'),
+  url('PTF75F-webfont.woff') format('woff'),
+  url('PTF75F-webfont.ttf') format('truetype'),
+  url('PTF75F-webfont.svg#pt_serifbold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+
+}

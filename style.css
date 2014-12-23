@@ -1,0 +1,241 @@
+/* RESET & TYPOGRAPHY */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+	font-family: "PT Serif", Georgia, serif;
+	font-size: 16px;
+	line-height: 1.6;
+	color: #666;
+	background-color: #fff;
+}
+@media screen and (min-width: 600px) {
+  body {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 900px) {
+  body {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  body {
+    font-size: 22px;
+  }
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 10px;
+  font-weight: 500;
+  line-height: 1.25;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, .button, figcaption {
+  font-family: "Karla", "Helvetica", "sans-serif";
+  font-weight: bold;
+  text-decoration: none;
+}
+a {
+  font-weight: 500;
+	color: #40c3fe;
+}
+a:hover,
+a:focus {
+}
+strong {
+  font-weight: 500;
+  font-style: italic;
+}
+img {
+	width: 100%;
+}
+
+/* LAYOUT */
+body {
+	width: 100%;
+}
+
+/* HEADER */
+.hero {
+  width: 100%;
+  margin: 0 0 2em;
+  padding: 8em 5% 1em;
+  text-align: center;
+  background-image: -moz-linear-gradient(top, rgba(255,255,255,0.2) 10%, rgba(255,255,255,1) 70%), url(img/rome.svg);
+  background-image: -webkit-linear-gradient(top bottom, rgba(255,255,255,20) 10%, rgba(255,255,255,255) 70%), url(img/rome.svg);
+  background-image: linear-gradient(top bottom, rgba(255,255,255,20) 10%, rgba(255,255,255,255) 70%), url(img/rome.svg);
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+@media screen and (min-width: 500px) {
+  .hero {
+    padding-top: 10em;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .hero {
+    background-size: 1400px auto;
+  }
+}
+.head {
+  font-size: 3.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.subhead {
+  font-size: 1.2em;
+}
+@media screen and (min-width: 800px) {
+  .head {
+    font-size: 4em;
+  }
+}
+.buttons {
+  margin-top: 1.5em;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: center;
+}
+.button {
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 0.5;
+
+  width: 55%;
+  margin: 0.5em;
+  padding: 1em 1.4em;
+  background-color: #999;
+  color: #fff;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+@media screen and (min-width: 400px) {
+  .buttons {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .button {
+    -webkit-box-flex: 0;
+    -webkit-flex-grow: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0;
+
+    width: auto;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .button {
+    padding: 0.7em 1.1em;
+  }
+}
+.button:hover {
+  background-color: #aaaaaa;
+}
+.button:active, .button:focus {
+  background-color: #747474;
+}
+.button-highlight {
+  background-color: #40c3fe;
+}
+.button-highlight:hover {
+  background-color: #51cdf2;
+}
+.button-highlight:active, .button-highlight:focus {
+  background-color: #1ba7de;
+}
+
+/* CONTENT */
+
+.content {
+  width: 90%;
+  margin: 0 auto 3em;
+}
+@media screen and (min-width: 800px) {
+  .content {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .content {
+    width: 50%;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .content {
+    width: 800px;
+  }
+}
+.centered {
+  text-align: center;
+}
+.diagram {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0;
+
+  display: -webkit-box;
+
+  display: -webkit-flex;
+
+  display: -ms-flexbox;
+
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+@media screen and (min-width: 1200px) {
+  .diagram {
+    width: 70%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .diagram {
+    width: 1100px;
+  }
+}
+.diagram-element {
+  width: 100%;
+  margin: 1em 0;
+}
+.diagram-img {
+  background-color: #eee;
+  border: 2px solid #eee;
+}
+@media screen and (min-width: 600px) {
+  .diagram-element {
+    width: 47.5%;
+  }
+  .big {
+    width: 100%;
+  }
+}
+
+.footer {
+  margin: 3em 0 4em;
+  font-size: 0.9em;
+}
