@@ -1,33 +1,28 @@
-
-.bar.total rect {
-  fill: steelblue;
+* {
+  box-sizing: border-box;
 }
-
-.bar.positive rect {
-  fill: darkolivegreen;
+.download-button {
+  display: none; /* is set visible as soon SVG is rendered */
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  padding: 0.8em 1em;
+  font-size: 14px;
+  font-family: "Karla", "Helvetica", sans-serif;
+  font-weight: bold;
+  background-color: #40c3fe;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
 }
-.bar.negative rect {
-  fill: crimson;
+@media screen and (min-width: 500px) {
+  .download-button {
+    font-size: 16px;
+  }
 }
-
-.bar line.connector {
-  stroke: grey;
-  stroke-dasharray: 3;
-}
-
-.bar text {
-  fill: white;
-  font: 12px sans-serif;
-  text-anchor: middle;
-}
-
-.axis text {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+@media screen and (min-width: 900px) {
+  .download-button {
+    padding: 1em 1.5em;
+    font-size: 18px;
+  }
 }

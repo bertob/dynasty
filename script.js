@@ -30,11 +30,11 @@ var BOTTOM_MARGIN = 0;
 
 if (SHOW_DYNASTIES && SHOW_INFO) {
   var SCALE_HEIGHT = 180;
-  var BOTTOM_MARGIN = 60;
+  var BOTTOM_MARGIN = 50;
 }
 else if (SHOW_INFO) {
   var SCALE_HEIGHT = 70;
-  var BOTTOM_MARGIN = 60;
+  var BOTTOM_MARGIN = 50;
 }
 
 var YEAR = 4;
@@ -74,6 +74,7 @@ d3.csv(emperor_file, type, function(error, data) {
   d3.csv(dynasty_file, type, function(error, data) {
     dynasties = data;
     init();
+    enableDownload();
   });
 });
 
@@ -416,6 +417,14 @@ function readEmperors(data) {
 
     log(emperors[emperors.length - 1]);
   });
+}
+
+function enableDownload() {
+  console.log("Downloading SVG!");
+  var downloadButton = document.getElementById("download-button");
+  var xml = (new XMLSerializer()).serializeToString(document.getElementById("svg"));
+  downloadButton.href = 'data:application/octet-stream;base64,' + btoa(unescape(encodeURIComponent(xml)));
+  downloadButton.style.display = "block";
 }
 
 function getYearPosition(date) {
