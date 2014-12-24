@@ -10,13 +10,13 @@ Originally built for this visualization of the reigns of the roman emperors.
 
 ##Usage
 
-Clone this repository and open index.html in your browser to try it locally.
+Clone this repository and open index.html in your browser to try it locally. You'll need a local HTTP server for this to work in some browsers. In this case, if you have Python 3, just run `python3 -m http.server` and go to `localhost:8000` in your browser.
 
 To create your own visualizations, prepare 2 CSV files following the format outlined below, and change the variables **emperor_file** and **dynasty_file** in the beginning of script.js.
 
 You'll also want to set the other config variables, **TITLE**, **DATA_SOURCE** and **CREDIT**. If you want, you can also disable these things with the **SHOW_INFO** flag, such that only the actual visualization is rendered. If you want to disable the dynasty labels and bars as well, you can do it by setting the **SHOW_DYNASTIES** flag.
 
-If you want the visualization as a self-contained SVG, you'll have to copy the SVG tag from your browser's Developer Tools and put the copied text in a file with an .svg file extension. I might make this more convenient in the future, but for now this is the only way.
+If you want the visualization as a self-contained SVG, just click the "Download as SVG" button.
 
 ##CSV files
 
