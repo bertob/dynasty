@@ -1,10 +1,10 @@
 // CONFIG
 
-var emperor_file = "data/rom_emp.csv";
-var dynasty_file = "data/rom_dyn.csv";
+var emperor_file = "data/jul_emp.csv";
+var dynasty_file = "data/jul_dyn.csv";
 
-var TITLE = "The lives and reigns of Roman Emperors";
-var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
+var TITLE = "The Julio-Claudian Dynasty";
+var SOURCE = "Data source: http://en.wikipedia.org/wiki/List_of_roman_emperors";
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
 
 var SHOW_INFO = true;
@@ -29,12 +29,15 @@ var SCALE_HEIGHT = 0;
 var BOTTOM_MARGIN = 0;
 
 if (SHOW_DYNASTIES && SHOW_INFO) {
-  var SCALE_HEIGHT = 180;
-  var BOTTOM_MARGIN = 50;
+  SCALE_HEIGHT = 180;
+  BOTTOM_MARGIN = 50;
 }
 else if (SHOW_INFO) {
-  var SCALE_HEIGHT = 70;
-  var BOTTOM_MARGIN = 50;
+  SCALE_HEIGHT = 70;
+  BOTTOM_MARGIN = 50;
+}
+else if (SHOW_DYNASTIES) {
+  SCALE_HEIGHT = 70;
 }
 
 var YEAR = 4;
