@@ -8,7 +8,7 @@ Originally built for this visualization of the reigns of the roman emperors.
 
 ![Roman emperors](examples/rome.png)
 
-##Usage
+## Usage
 
 Clone this repository and open index.html in your browser to try it locally. You'll need a local HTTP server for this to work in some browsers. In this case, if you have Python 3, just run `python3 -m http.server` and go to `localhost:8000` in your browser.
 
@@ -18,11 +18,11 @@ You'll also want to set the other config variables, **TITLE**, **DATA_SOURCE** a
 
 If you want the visualization as a self-contained SVG, just click the "Download as SVG" button.
 
-##CSV files
+## CSV files
 
 The visualzation is generated from 2 CSV files, a list of all emperors, and a list of all dynasties. The paths to these files can be configured in the first few lines of script.js by changing the variables **emperor_file** and **dynasty_file**.
 
-###emperor_file
+### emperor_file
 
 name | birth | death | ascension | abdication | ascension (co-emperor) | abdication (co-emperor)
 -----|-------|-------|-----------|------------|------------------------|-----------------------
@@ -40,7 +40,7 @@ parameter | meaning
 **d** | abdication date same as death date (died in office)
 **a** | co-emperor abdication date same as ascension date to emperor
 
-###dynasty_file
+### dynasty_file
 
 name of the dynasty | first emperor's name | last emperor's name | display color
 --------------------|----------------------|---------------------|--------------
