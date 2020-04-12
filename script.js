@@ -64,7 +64,7 @@ var GRID_2 = "#aaa";
 var GRID_3 = "#ccc";
 var GRID_4 = "#eee";
 
-var FONT = "'Fira Sans', Helvetica, sans-serif";
+var FONT = "Inter, Helvetica, sans-serif";
 
 var gradients = [];
 
@@ -179,7 +179,7 @@ function drawInfo() {
     .attr("y", VERT_MARGIN + SCALE_HEIGHT - 140)
     .attr("text-anchor", "start")
     .attr("font-family", FONT)
-    .attr("font-weight", 500)
+    .attr("font-weight", 800)
     .attr("font-size", 40)
     .attr("fill", "black");
 
@@ -190,7 +190,7 @@ function drawInfo() {
     .attr("y", VERT_MARGIN + SCALE_HEIGHT - 100)
     .attr("text-anchor", "start")
     .attr("font-family", FONT)
-    .attr("font-weight", 500)
+    .attr("font-weight", 300)
     .attr("font-size", 30)
     .attr("fill", "black");
 
@@ -343,7 +343,7 @@ function drawDynasties(dynasties, emperors) {
       .attr("y", y_label)
       .attr("text-anchor", "start")
       .attr("font-family", FONT)
-      .attr("font-weight", 500)
+      .attr("font-weight", 700)
       .attr("font-size", "18px")
       .attr("fill", dyn.color);
 
@@ -487,10 +487,10 @@ function endCentury(year) {
 
 function getYearRange(start, end) {
   if (start < 0 || end < 0) {
-    return getYearString(startCentury(min) * 100) + " – " + getYearString(endCentury(max) * 100);
+    return getYearString(startCentury(min) * 100) + "⁠–⁠" + getYearString(endCentury(max) * 100);
   }
   else {
-    return startCentury(min) * 100 + " – " + endCentury(max) * 100;
+    return startCentury(min) * 100 + "⁠–⁠" + endCentury(max) * 100;
   }
 }
 
