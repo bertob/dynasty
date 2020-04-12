@@ -1,10 +1,11 @@
 // CONFIG
 
-var emperor_file = "data/jul_emp.csv";
-var dynasty_file = "data/jul_dyn.csv";
+var emperor_file = "data/british-monarchs.csv";
+var dynasty_file = "data/british-dynasties.csv";
 
-var TITLE = "The Julio-Claudian Dynasty";
-var SOURCE = "Data source: http://en.wikipedia.org/wiki/List_of_roman_emperors";
+var TITLE = "British Monarchy";
+var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_British_monarchs";
+
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
 
 var SHOW_INFO = true;
@@ -233,7 +234,7 @@ function drawGrid(data, start, end) {
 
 function drawEmperors(data) {
   data.forEach(function(el, i) {
-    log("drawing " + el.name);
+    console.log("drawing " + el.name);
     drawName(el, i);
     handleRanges("l", el, i, el.birth, el.death, COLOR_LIFE);
     if ((el.ascension && el.abdictation) !== false) handleRanges("a", el, i, el.ascension, el.abdication, COLOR_AUG);
@@ -298,7 +299,7 @@ function drawName(emp, i) {
 
 function drawDynasties(dynasties, emperors) {
   dynasties.forEach(function(dyn, i) {
-    log("drawing the " + dyn.name);
+    console.log("drawing the " + dyn.name);
     var d_start, d_end;
     emperors.forEach(function(emp, j) {
       if (dyn.start === emp.name) {
@@ -382,7 +383,7 @@ function drawGridLabel(year, color) {
 
 function readEmperors(data) {
   data.forEach(function(el, i){
-    log("reading " + el.name);
+    console.log("reading " + el.name);
 
     var b = getYearPosition(el.birth);
     var d = getYearPosition(el.death);
@@ -418,7 +419,7 @@ function readEmperors(data) {
       c_abdication: c_abd
     });
 
-    log(emperors[emperors.length - 1]);
+    console.log(emperors[emperors.length - 1]);
   });
 }
 
@@ -464,7 +465,7 @@ function getYearPosition(date) {
     var year_percentage = (month / 12) * (11/12) + (day / 30) * (1/12);
     positions.push(year + year_percentage);
   });
-  log(positions);
+  console.log(positions);
   return positions;
 }
 
@@ -501,8 +502,4 @@ function getYearString(year) {
 function type(d) {
   d.value = +d.value;
   return d;
-}
-
-function log(a) {
-  console.log(a);
 }
