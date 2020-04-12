@@ -1,10 +1,19 @@
 // CONFIG
 
-var emperor_file = "data/british-monarchs.csv";
-var dynasty_file = "data/british-dynasties.csv";
+// var emperor_file = "data/british-monarchs.csv";
+// var dynasty_file = "data/british-dynasties.csv";
+// var TITLE = "British Monarchy";
+// var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_British_monarchs";
 
-var TITLE = "British Monarchy";
-var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_British_monarchs";
+// var emperor_file = "data/hungarian-kings.csv";
+// var dynasty_file = "data/hungarian-dynasties.csv";
+// var TITLE = "Kings of Hungary";
+// var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Hungarian_monarchs";
+
+var emperor_file = "data/roman-emperors.csv";
+var dynasty_file = "data/roman-dynasties.csv";
+var TITLE = "Roman Emperors";
+var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
 
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
 
