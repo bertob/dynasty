@@ -12,7 +12,7 @@
 
 var emperor_file = "data/roman-emperors.csv";
 var dynasty_file = "data/roman-dynasties.csv";
-var TITLE = "Roman Emperors";
+var TITLE = "Western Roman Emperors";
 var SOURCE = "Data source: https://en.wikipedia.org/wiki/List_of_Roman_emperors";
 
 var CREDIT = "Author: Tobias Bernard (tobiasbernard.com)";
