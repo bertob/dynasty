@@ -228,8 +228,8 @@ function drawInfo() {
 
 function drawGrid(data, start, end) {
   // -200, 700
-  // Grid 200BC - 700AD
-  // Data 167BC - 612AD
+  // Grid 200BCE - 700CE
+  // Data 167BCE - 612CE
 
   for(var i = start; i <= end; i += 10) {
     drawLineAtYear(i, GRID_4);
@@ -504,8 +504,8 @@ function getYearRange(start, end) {
 }
 
 function getYearString(year) {
-  if (year < 0) return Math.abs(year) + " BC";
-  else return year + " AD";
+  if (year < 0) return Math.abs(year) + " BCE";
+  else return year + " CE";
 }
 
 function type(d) {
